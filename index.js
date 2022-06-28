@@ -47,19 +47,19 @@ async function run(){
       });
 
 
-      // app.put('/itemQ/:id', async(req, res) =>{
-      //   const id = req.params.id;
-      //   const qty = req.body.newQuantity;
-      //   const filter = {_id: ObjectId(id)};
-      //   const options = { upsert: true};
-      //   const updatedDoc = {
-      //       $set: {
-      //             quantity: qty
-      //       }
-      //   }
-      //   const result = await productCollection.updateOne(filter, updatedDoc, options);
-      //   res.send(result)
-      // });
+      app.put('/itemQ/:id', async(req, res) =>{
+        const id = req.params.id;
+        const qty = req.body.newQuantity;
+        const filter = {_id: ObjectId(id)};
+        const options = { upsert: true};
+        const updatedDoc = {
+            $set: {
+                  quantity: qty
+            }
+        }
+        const result = await productCollection.updateOne(filter, updatedDoc, options);
+        res.send(result)
+      });
 
       app.delete('/item/:id', async(req, res) =>{
         const id = req.params.id;
