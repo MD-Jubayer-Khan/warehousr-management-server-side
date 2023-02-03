@@ -8,14 +8,16 @@ const app = express();
 
 // middleware
 app.use(cors());
-app.use(express.json());
+app.use(cors({credentials: true, origin: ["https://warehouse-management-cli-9f2b9.web.app/", "http://localhost:3000"]}));
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.myfuo.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 async function run(){
     try{
-      await client.connect()
+
+      client.connect()
+      
       const productCollection = client.db('warehouseManagement').collection('items');
 
       // Get
